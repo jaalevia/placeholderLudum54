@@ -113,7 +113,16 @@ public class GameManager : MonoBehaviour
         switch (Item.ItemID) 
         {
             case -11:
+                StartCoroutine(ChangeScene(0, 0));
+                break;
+            case -12:
                 StartCoroutine(ChangeScene(1, 0));
+                break;
+            case -13:
+                StartCoroutine(ChangeScene(2, 0));
+                break;
+            case -14:
+                StartCoroutine(ChangeScene(3, 0));
                 break;
         }
     }
