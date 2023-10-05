@@ -9,9 +9,4 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("PlaceHolder");
     }
-
-    public void QuitGame()
-    { 
-        Application.Quit();
-    }
 }
