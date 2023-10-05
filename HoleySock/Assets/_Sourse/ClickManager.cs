@@ -44,10 +44,7 @@ public class ClickManager : MonoBehaviour
                 gameManager.UpdateEquipmentCanvas();
             }
         }
-        else
-        {
-           gameManager.CheckSpecialConditions(item);
-        }
+        gameManager.CheckSpecialConditions(item, canGetItem);
         Player.GetComponent<SpriteAnimator>().PlayAnimation(null);
         yield return null;
     }

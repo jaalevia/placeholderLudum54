@@ -13,4 +13,6 @@ public class DataItem : MonoBehaviour
     public string ItemName;
     public Vector2 ItemNameTagSize = new Vector2(3, 0.65f);
 
+    public DialogueAsset dialogue;
+
 }

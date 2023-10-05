@@ -8,6 +8,10 @@ public class SpriteAnimator : MonoBehaviour
     public AnimationData BaseAnimation;
     Coroutine _previousAnimation;
 
+    private void Start()
+    {
+        PlayAnimation(BaseAnimation);
+    }
     public void PlayAnimation(AnimationData data)
     {
         if (_previousAnimation != null)

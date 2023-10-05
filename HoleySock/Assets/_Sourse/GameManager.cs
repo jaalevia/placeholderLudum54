@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,13 +20,22 @@ public class GameManager : MonoBehaviour
     public Color SelectedItemColor;
     public int SelectedCanvasSlot = 0, SelectedItemID = 1;
     public AnimationData[] PlayerAnimations;
+    public GameObject LeftLight;
+    public GameObject RightLight;
     public IEnumerator MoveToPoint(Transform myObject, Vector2 point)
     {
         Vector2 positionDifference = point - (Vector2)myObject.position;
 
         if (myObject.GetComponentInChildren<SpriteRenderer>() && positionDifference.x != 0)
         {
+            LeftLight.SetActive(true);
+            RightLight.SetActive(false);
             myObject.GetComponentInChildren<SpriteRenderer>().flipX = positionDifference.x > 0;
+            if (myObject.GetComponentInChildren<SpriteRenderer>().flipX = positionDifference.x > 0)
+            {
+                LeftLight.SetActive(false);
+                RightLight.SetActive(true);
+            }
         }
         while (positionDifference.magnitude > _moveAccuracy)
         {
@@ -113,7 +123,7 @@ public class GameManager : MonoBehaviour
         NameTag.localPosition = new Vector2(size.x / 2, -0.5f);
     }
 
-    public void CheckSpecialConditions(DataItem Item)
+    public void CheckSpecialConditions(DataItem Item,bool canGetItem)
     { 
         switch (Item.ItemID) 
         {
@@ -128,6 +138,9 @@ public class GameManager : MonoBehaviour
                 break;
             case -14:
                 StartCoroutine(ChangeScene(3, 0));
+                break;
+            case -15:
+                StartCoroutine(ChangeScene(4, 0));
                 break;
         }
     }
@@ -148,6 +161,8 @@ public class GameManager : MonoBehaviour
         LocalScenes[SceneNumber].SetActive(true);
         _activeLocalScene = SceneNumber;
         FindObjectOfType<ClickManager>().Player.position = PlayerStartPositions[SceneNumber].position;
+
+
 
         foreach (SpriteAnimator spriteAnimator in FindObjectsOfType<SpriteAnimator>())
         {
