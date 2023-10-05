@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SpriteRenderer mySpriteRenderer;
+    public AnimationData BaseAnimation;
+    Coroutine _previousAnimation;
 
-    // Update is called once per frame
-    void Update()
+    public void PlayAnimation(AnimationData data)
     {
-        
+        if (_previousAnimation != null)
+            StopCoroutine(_previousAnimation);
+        _previousAnimation = StartCoroutine(PlayAnimationCoroutine(data));
+
+    }
+    public IEnumerator PlayAnimationCoroutine(AnimationData data)
+    {
+        if (data == null)
+        {
+            data = BaseAnimation;
+        }
+        int spritesAmount = data.Sprites.Length, i = 0;
+        float waitTime = data.FramesOfGap * AnimationData.TargetFrameTime;
+        while (i < spritesAmount)
+        {
+            mySpriteRenderer.sprite = data.Sprites[i++];
+            yield return new WaitForSeconds(waitTime);
+
+            if (data.Loop && i >= spritesAmount)
+            {
+                i = 0;
+            }
+        }
+        yield return null;
     }
 }

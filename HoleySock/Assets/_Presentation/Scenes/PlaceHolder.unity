@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572103}
+  - component: {fileID: 4572104}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,6 +157,20 @@ Transform:
   - {fileID: 1826266630}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4572104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fbd46aa7d70d54e8fd5cd5de83690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySpriteRenderer: {fileID: 236410446}
+  BaseAnimation: {fileID: 11400000, guid: bd6aee7e0ae3e2445962d7af8b7303c3, type: 2}
 --- !u!1 &4724119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2717,9 @@ MonoBehaviour:
   SelectedItemColor: {r: 0.7735849, g: 0.71241075, b: 0.14960839, a: 0.5176471}
   SelectedCanvasSlot: 0
   SelectedItemID: 1
+  PlayerAnimations:
+  - {fileID: 11400000, guid: bd6aee7e0ae3e2445962d7af8b7303c3, type: 2}
+  - {fileID: 11400000, guid: 97a55abbc49e3ac4a9c847ed4e3cf327, type: 2}
 --- !u!1 &433824139
 GameObject:
   m_ObjectHideFlags: 0

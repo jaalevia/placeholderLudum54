@@ -15,8 +15,9 @@ public class ClickManager : MonoBehaviour
     }
     public void GoToItem(DataItem item)
     {
-        StartCoroutine(gameManager.MoveToPoint(Player, item.GoToPoint.position));
+        Player.GetComponent<SpriteAnimator>().PlayAnimation(gameManager.PlayerAnimations[1]);
         playerWalking = true;
+        StartCoroutine(gameManager.MoveToPoint(Player, item.GoToPoint.position));
         TryGettingItem(item);
     }
 
@@ -34,6 +35,7 @@ public class ClickManager : MonoBehaviour
     {
         while (playerWalking)
             yield return new WaitForSeconds(0.05f);
+
         if (canGetItem) 
         {
             foreach (GameObject g in item.ObjectsToRemove)
@@ -46,6 +48,7 @@ public class ClickManager : MonoBehaviour
         {
            gameManager.CheckSpecialConditions(item);
         }
-        
+        Player.GetComponent<SpriteAnimator>().PlayAnimation(null);
+        yield return null;
     }
 }

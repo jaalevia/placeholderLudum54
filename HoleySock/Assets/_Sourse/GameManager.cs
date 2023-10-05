@@ -18,10 +18,15 @@ public class GameManager : MonoBehaviour
     public Sprite EmptyItemSlotSprite;
     public Color SelectedItemColor;
     public int SelectedCanvasSlot = 0, SelectedItemID = 1;
-
+    public AnimationData[] PlayerAnimations;
     public IEnumerator MoveToPoint(Transform myObject, Vector2 point)
     {
         Vector2 positionDifference = point - (Vector2)myObject.position;
+
+        if (myObject.GetComponentInChildren<SpriteRenderer>() && positionDifference.x != 0)
+        {
+            myObject.GetComponentInChildren<SpriteRenderer>().flipX = positionDifference.x > 0;
+        }
         while (positionDifference.magnitude > _moveAccuracy)
         {
             myObject.Translate(_moveSpeed * positionDifference.normalized * Time.deltaTime);
@@ -143,6 +148,11 @@ public class GameManager : MonoBehaviour
         LocalScenes[SceneNumber].SetActive(true);
         _activeLocalScene = SceneNumber;
         FindObjectOfType<ClickManager>().Player.position = PlayerStartPositions[SceneNumber].position;
+
+        foreach (SpriteAnimator spriteAnimator in FindObjectsOfType<SpriteAnimator>())
+        {
+            spriteAnimator.PlayAnimation(null);
+        }
 
         while (BlockingImage.color.a < 0)
         {
